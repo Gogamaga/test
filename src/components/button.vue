@@ -1,0 +1,76 @@
+<template>
+  <a class="button hvr-radial-out" @click.stop="$emit('handleronClick', id, $event )">Детальніше</a>
+</template>
+
+<script>
+export default {
+    name: "Button",
+    data() {
+        return {};
+    },
+    props: ["id"],
+    mounted() {}
+};
+</script>
+
+
+<style>
+.button {
+    padding: 10px 15px;
+    border-radius: 2px;
+}
+.button:hover {
+    cursor: pointer;
+}
+
+.hvr-radial-out {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    position: relative;
+    overflow: hidden;
+    background: #e1e1e1;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.hvr-radial-out:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #0099cc;
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.hvr-radial-out:hover,
+.hvr-radial-out:focus {
+    color: white;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hvr-radial-out:active {
+    box-shadow: none;
+}
+
+.hvr-radial-out:hover:before,
+.hvr-radial-out:focus:before,
+.hvr-radial-out:active:before {
+    -webkit-transform: scale(2);
+    transform: scale(2);
+}
+</style>
