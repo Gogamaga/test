@@ -1,10 +1,10 @@
 <template>
-  <div class="container-fluid">
+    <div class="container-fluid admin-dashboard">
         <div class="col-lg-12">
             <navigation/>
             <router-view></router-view>
         </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -19,5 +19,8 @@ export default {
 
 <style>
 @import "bootstrap/dist/css/bootstrap.min.css";
+.admin-dashboard {
+    padding-bottom: 25px;
+}
 </style>
 

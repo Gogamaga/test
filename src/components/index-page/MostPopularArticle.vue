@@ -1,13 +1,12 @@
 <template>
-  <ul class="most-popular__list list-articles">
-      <li class="most-popular__list-item list-articles__item" v-for="(article, index) in articles" :key="index" >
-          <router-link :to="`/article/${article._id}`">
-               <div class="most-popular__list-item__text list-articles__text">{{article.discription | shortDiscription}}</div>
-              <div class="most-popular__list-item__date list-articles__date">{{article.create| parseTime}}</div>
-          </router-link>
-
-      </li>
-  </ul>
+    <ul class="most-popular__list list-articles">
+        <li class="most-popular__list-item list-articles__item" v-for="(article, index) in articles" :key="index">
+            <router-link :to="`/article/${article._id}`">
+                <div class="most-popular__list-item__text list-articles__text">{{article.discription | shortDiscription}}</div>
+                <div class="most-popular__list-item__date list-articles__date">{{article.create| parseTime}}</div>
+            </router-link>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -18,7 +17,14 @@ export default {
     data() {
         return {};
     },
-    props: ["articles"],
+    props: {
+        articles: {
+            type: Array,
+            default() {
+                return [];
+            }
+        }
+    },
 
     methods: {},
     filters: {

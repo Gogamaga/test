@@ -1,15 +1,9 @@
 <template>
-  <div class="header-background">
-            <div class="header-background__container">
-                <img v-for="(image) in images" :key="image.id" :src="image.image" 
-                 class="header-background__image" 
-                 alt="" 
-                 @transitionend="transitionend"
-                 :style='{width:`${headerBackgroundWidth}px`}'
-                 > 
-                
-            </div>     
+    <div class="header-background">
+        <div class="header-background__container">
+            <img v-for="(image) in images" :key="image.id" :src="image.image" class="header-background__image" alt="" @transitionend="transitionend" :style='{width:`${headerBackgroundWidth}px`}'>
         </div>
+    </div>
 </template>
 <script>
 export default {
@@ -73,6 +67,6 @@ export default {
 .header-background__image {
     display: block;
     float: left;
-    transition: margin-left 0.5s;
+    transition: margin-left 0.5s ease-in-out;
 }
 </style>

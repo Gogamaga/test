@@ -5,14 +5,17 @@ import {
   GET_ONE_COUNTRY_FOR_ADMIN,
   SAVE_COUNTRY,
   EDIT_COUNTRY,
-  DELETE_COUNTRY
+  DELETE_COUNTRY,
+  GET_COUNTRIES_COUNT,
+  GET_COUNTRIES_FOR_PAGE
 } from "@/store/constants";
 import { countries } from "@/api/admin";
 
 const state = {
   countries: [],
   country: {},
-  request: false
+  request: false,
+  count: 0
 };
 
 const mutations = {
@@ -25,11 +28,17 @@ const mutations = {
   [GET_ALL_COUNTRIES_FOR_ADMIN](state, payload) {
     state.countries = payload.countries;
   },
+  [GET_COUNTRIES_COUNT](state, payload) {
+    state.count = payload.count;
+  },
   [GET_ONE_COUNTRY_FOR_ADMIN](state, payload) {
     state.country = payload.country;
   },
   [DELETE_COUNTRY](state, payload) {
     state.countries = state.countries.filter(country => country._id !== payload.id);
+  },
+  [GET_COUNTRIES_FOR_PAGE](state, payload) {
+    state.countries = payload.countries;
   }
 };
 
@@ -48,6 +57,16 @@ const actions = {
       context.commit({ type: REQUEST_SUCCESS });
     });
   },
+  [GET_COUNTRIES_COUNT](context) {
+    countries
+      .getCountCountries()
+      .then(({ data }) => context.commit({ type: GET_COUNTRIES_COUNT, count: +data }));
+  },
+  [GET_COUNTRIES_FOR_PAGE](context, pagination) {
+    return countries
+      .getCountriesForPage(pagination)
+      .then(({ data }) => context.commit({ type: GET_COUNTRIES_FOR_PAGE, countries: data }));
+  },
   [SAVE_COUNTRY](context, country) {
     return countries.saveCountry(country).then(({ data }) => data._id);
   },
@@ -57,7 +76,6 @@ const actions = {
   [DELETE_COUNTRY](context, id) {
     return countries.deleteCountry(id).then(({ data }) => {
       context.commit({ type: DELETE_COUNTRY, id });
-      console.log(data);
     });
   }
 };
@@ -71,6 +89,9 @@ const getters = {
   },
   getOneCountryForAdmin(state) {
     return state.country;
+  },
+  getCountriesCount(state) {
+    return state.count;
   }
 };
 

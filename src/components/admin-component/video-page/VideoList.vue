@@ -6,7 +6,7 @@
           <div class="video-list__card" v-for="video in videos" :key="video.id"  @click="handeleChoiseVideo(video.id)">
               <div class="video-list__card__image-container">
                 <video-player :src="video.src" :poster="video.poster" :setting='settingForList' />
-              </div>
+               </div>
           <div class="video-list__card-title">
             <p  class="">{{video.title}}</p>
           </div>

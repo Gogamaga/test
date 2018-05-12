@@ -1,15 +1,15 @@
 <template>
-  <div className="container-fluid">
-    <Button :label="'назад до списку'" @handleClick="handleBackToList" />
-    <div class="row justify-content-center align-items-center" :style="{'height': '80vh'}" >               
-        <div className="col-lg-4 col-md-6 col-sm-8">
-            <span v-if="!isValid" style="color:red" >заповніть поле</span>
-            <Input @handleInput="handleInput" name="name" :value="country.name" />
-            <Button v-if="isEdit" :label="'редагуати'" @handleClick="handleEditCountry" />  
-            <Button v-else :label="'зберегти'" @handleClick="handleSaveCountry" />                          
+    <div className="container-fluid">
+        <Button :label="'назад до списку'" @handleClick="handleBackToList" />
+        <div class="row justify-content-center align-items-center" :style="{'height': '80vh'}">
+            <div className="col-lg-4 col-md-6 col-sm-8">
+                <span v-if="!isValid" style="color:red">заповніть поле</span>
+                <Input @handleInput="handleInput" name="name" :value="country.name" />
+                <Button v-if="isEdit" :label="'редагуати'" @handleClick="handleEditCountry" />
+                <Button v-else :label="'зберегти'" @handleClick="handleSaveCountry" />
+            </div>
         </div>
-    </div>            
-</div>
+    </div>
 </template>
 
 <script>
@@ -60,7 +60,10 @@ export default {
             this.country[name] = value;
         },
         handleBackToList() {
-            this.$router.push("/admin/dashboard/countries");
+            this.$router.push({
+                name: "Admin.Countries.List",
+                params: { page: "1" }
+            });
         },
         ...mapActions([GET_ONE_COUNTRY_FOR_ADMIN, EDIT_COUNTRY])
     },
