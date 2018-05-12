@@ -9,6 +9,7 @@ export default {
     {
       path: "",
       component: SystemsList,
+      name: "Admin.System.List",
       meta: {
         title: "Системи"
       }
@@ -16,6 +17,7 @@ export default {
     {
       path: "new",
       component: SystemsCreator,
+      name: "Admin.System.New",
       meta: {
         title: "Системи"
       }
@@ -23,6 +25,7 @@ export default {
     {
       path: "edit/:id",
       component: SystemsCreator,
+      name: "Admin.System.Edit",
       meta: {
         title: "Системи"
       }

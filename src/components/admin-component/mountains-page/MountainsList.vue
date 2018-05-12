@@ -1,18 +1,22 @@
 <template>
-  <div>
+    <div>
         <Button :label="'додати'" @handleClick="this.handleAddSystem" />
         <!-- <h3 v-if="request" >Loadind...</h3> -->
-        <Table  >
+        <Table>
             <Thead slot="thead" :fields="['Назва','Система','Країна', 'Висота','Дата створення','','']" />
             <Tbody slot="tbody">
-                <tr v-for="mountain in mountains" :key="mountain._id" >
+                <tr v-for="mountain in mountains" :key="mountain._id">
                     <td>{{mountain.name}}</td>
                     <td>{{mountain.system}}</td>
                     <td>{{mountain.country}}</td>
                     <td>{{mountain.height}}</td>
                     <td>{{mountain.create| parseTime }}</td>
-                    <td><Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editMountain(mountain._id)"/></td>
-                    <td><Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteMountain(mountain._id)" /></td>
+                    <td>
+                        <Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editMountain(mountain._id)" />
+                    </td>
+                    <td>
+                        <Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteMountain(mountain._id)" />
+                    </td>
                 </tr>
             </Tbody>
         </Table>
@@ -42,13 +46,20 @@ export default {
     methods: {
         ...mapActions([GET_ALL_MOUNTAINS_FOR_ADMIN, DELETE_MOUNTAIN]),
         editMountain(id) {
-            this.$router.push(`/admin/dashboard/mountains/edit/${id}`);
+            this.$router.push({
+                name: "Admin.Mountains.Edit",
+                params: {
+                    id
+                }
+            });
         },
         deleteMountain(id) {
             this.DELETE_MOUNTAIN(id);
         },
         handleAddSystem() {
-            this.$router.push("/admin/dashboard/mountains/new");
+            this.$router.push({
+                name: "Admin.Mountains.New"
+            });
         }
     },
     computed: {

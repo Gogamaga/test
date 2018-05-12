@@ -96,7 +96,9 @@ export default {
             this.styling[name] = value;
         },
         backToPlayer() {
-            this.$router.push("/admin/dashboard/player");
+            this.$router.push({
+                name: "Admin.Video.List"
+            });
         },
         saveSetting() {
             const setting = JSON.stringify({ setting: this.setting, styling: this.styling });

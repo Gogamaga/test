@@ -9,6 +9,7 @@ export default {
     {
       path: "",
       component: MountainsList,
+      name: "Admin.Mountains.List",
       meta: {
         title: "Гори"
       }
@@ -16,6 +17,7 @@ export default {
     {
       path: "new",
       component: MountainCreator,
+      name: "Admin.Mountains.New",
       meta: {
         title: "Гори"
       }
@@ -23,6 +25,7 @@ export default {
     {
       path: "edit/:id",
       component: MountainCreator,
+      name: "Admin.Mountains.Edit",
       meta: {
         title: "Гори"
       }

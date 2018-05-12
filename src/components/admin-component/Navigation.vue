@@ -1,10 +1,10 @@
 <template>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <navigation-link :label="'Статті'" :to="'/admin/dashboard/articles'" />
-        <navigation-link :label="'Гори'" :to="'/admin/dashboard/mountains'" />
-        <navigation-link :label="'Системи'" :to="'/admin/dashboard/systems'" />
-        <navigation-link :label="'Країни'" :to="'/admin/dashboard/countries/1'" />
-        <navigation-link :label="'Player'" :to="'/admin/dashboard/player'" />
+        <navigation-link :label="'Статті'" :to="{name: 'Admin.Articles.List'}" :root-path="'article'" />
+        <navigation-link :label="'Гори'" :to="{name: 'Admin.Mountains.List'}" :root-path="'mountains'" />
+        <navigation-link :label="'Системи'" :to="{name: 'Admin.System.List'}" :root-path="'systems'" />
+        <navigation-link :label="'Країни'" :to="{name: 'Admin.Countries.List', params:{page:'1'}}" :root-path="'countries'" />
+        <navigation-link :label="'Player'" :to="{name: 'Admin.Video.List'}" :root-path="'player'" />
         <li class="nav-link">
             <a href="#" @click="handleExitFromAdmin" style="color:#000">Вийти</a>
         </li>

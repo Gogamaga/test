@@ -1,26 +1,26 @@
 <template>
-<div class="container-fluid">
-    <Button :label="'налаштування'" @handleClick="toSetting"/>
-  <div class="row">
-      <div class="col-lg-3">
-          <div class="video-list__card" v-for="video in videos" :key="video.id"  @click="handeleChoiseVideo(video.id)">
-              <div class="video-list__card__image-container">
-                <video-player :src="video.src" :poster="video.poster" :setting='settingForList' />
-               </div>
-          <div class="video-list__card-title">
-            <p  class="">{{video.title}}</p>
-          </div>
-          </div>
-          
-      </div>
-      <div class="col-lg-9 ">
-          <div class="row justify-content-center" >
-            <video-player :src="choiceVideo.src" :poster="choiceVideo.poster" :setting="settingForMainPlayer" />
-          </div>
-      </div>
-  </div>
-  
-</div>  
+    <div class="container-fluid">
+        <Button :label="'налаштування'" @handleClick="toSetting" />
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="video-list__card" v-for="video in videos" :key="video.id" @click="handeleChoiseVideo(video.id)">
+                    <div class="video-list__card__image-container">
+                        <video-player :src="video.src" :poster="video.poster" :setting='settingForList' />
+                    </div>
+                    <div class="video-list__card-title">
+                        <p class="">{{video.title}}</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-9 ">
+                <div class="row justify-content-center">
+                    <video-player :src="choiceVideo.src" :poster="choiceVideo.poster" :setting="settingForMainPlayer" />
+                </div>
+            </div>
+        </div>
+
+    </div>
 </template>
 
 <script>
@@ -56,7 +56,9 @@ export default {
             }, {});
         },
         toSetting() {
-            this.$router.push("/admin/dashboard/player/setting");
+            this.$router.push({
+                name: "Admin.Video.Setting"
+            });
         }
     }
 };

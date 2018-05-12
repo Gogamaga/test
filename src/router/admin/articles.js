@@ -9,6 +9,7 @@ export default {
     {
       path: "",
       component: ArticleList,
+      name: "Admin.Articles.List",
       meta: {
         title: "Статті"
       }
@@ -16,6 +17,7 @@ export default {
     {
       path: "new",
       component: ArticleCreator,
+      name: "Admin.Articles.New",
       meta: {
         title: "Статті"
       }
@@ -23,6 +25,7 @@ export default {
     {
       path: "edit/:id",
       component: ArticleCreator,
+      name: "Admin.Articles.Edit",
       meta: {
         title: "Статті"
       }

@@ -120,8 +120,13 @@ export default {
             this.GET_COUNTRIES_FOR_PAGE({ from: pageNumber, limit: this.limit.count });
         },
         limit() {
-            const { page } = this.$route.params;
-            const pageNumber = +page * this.limit.count - this.limit.count;
+            this.$router.push({
+                name: "Admin.Countries.List",
+                params: {
+                    page: "1"
+                }
+            });
+            const pageNumber = this.limit.count - this.limit.count;
             this.GET_COUNTRIES_FOR_PAGE({ from: pageNumber, limit: this.limit.count });
         }
     }

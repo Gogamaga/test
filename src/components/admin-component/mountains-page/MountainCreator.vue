@@ -1,14 +1,14 @@
 <template>
-  <wraper-for-created :handleBackToList="handleBackToList">
-      <Input name="name" label="Назва" @handleInput="handleInput" :value="mountain.name" />
-      <Input name="height" label="Висота" type="number" @handleInput="handleInput" :value="mountain.height"/>
-      <v-select :options="countries" v-model="selectedCountry"/>
-      <v-select :options="systems" v-model="selectedSystem" />
-      <Input name="latitude" type="number" label="Широта" @handleInput="handleInput" :value="mountain.coordinates.latitude" />
-      <Input name="longitude" type="number" label="Довгота" @handleInput="handleInput" :value="mountain.coordinates.longitude" />
-      <Button v-if="isEdit" label="редагувати" @handleClick="editMountain"/>
-      <Button v-else label="зберегти" @handleClick='saveMountain' />
-  </wraper-for-created>
+    <wraper-for-created :handleBackToList="handleBackToList">
+        <Input name="name" label="Назва" @handleInput="handleInput" :value="mountain.name" />
+        <Input name="height" label="Висота" type="number" @handleInput="handleInput" :value="mountain.height" />
+        <v-select :options="countries" v-model="selectedCountry" />
+        <v-select :options="systems" v-model="selectedSystem" />
+        <Input name="latitude" type="number" label="Широта" @handleInput="handleInput" :value="mountain.coordinates.latitude" />
+        <Input name="longitude" type="number" label="Довгота" @handleInput="handleInput" :value="mountain.coordinates.longitude" />
+        <Button v-if="isEdit" label="редагувати" @handleClick="editMountain" />
+        <Button v-else label="зберегти" @handleClick='saveMountain' />
+    </wraper-for-created>
 </template>
 <script>
 import { mapActions } from "vuex";
@@ -54,7 +54,9 @@ export default {
     },
     methods: {
         handleBackToList() {
-            this.$router.push("/admin/dashboard/mountains");
+            this.$router.push({
+                name: "Admin.Mountains.List"
+            });
         },
         handleInput({ target }) {
             const { name, value } = target;
@@ -77,7 +79,12 @@ export default {
                 }
             }
             this.SAVE_MOUNTAIN(this.mountain).then(id =>
-                this.$router.push(`/admin/dashboard/mountains/edit/${id}`)
+                this.$router.push({
+                    name: "Admin.Mountains.Edit",
+                    params: {
+                        id
+                    }
+                })
             );
         },
         editMountain() {

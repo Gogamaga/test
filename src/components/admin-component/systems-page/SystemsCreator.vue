@@ -1,9 +1,9 @@
 <template>
-  <wraper-for-created :handleBackToList="handleBackToList">
-      <Input :name="'name'" @handleInput="handleInput" :value="system.name" />
-      <Button v-if="!isEdit" :label="'зберегти'" @handleClick="handleSaveSystem"/>
-      <Button v-else :label="'редагувати'" @handleClick="handleEditSystem"/>
-  </wraper-for-created>
+    <wraper-for-created :handleBackToList="handleBackToList">
+        <Input :name="'name'" @handleInput="handleInput" :value="system.name" />
+        <Button v-if="!isEdit" :label="'зберегти'" @handleClick="handleSaveSystem" />
+        <Button v-else :label="'редагувати'" @handleClick="handleEditSystem" />
+    </wraper-for-created>
 </template>
 
 <script>
@@ -36,11 +36,18 @@ export default {
     },
     methods: {
         handleBackToList() {
-            this.$router.push("/admin/dashboard/systems");
+            this.$router.push({
+                name: "Admin.System.List"
+            });
         },
         handleSaveSystem() {
             this.$store.dispatch(SAVE_SYSTEM, this.system).then(id => {
-                this.$router.push(`/admin/dashboard/systems/edit/${id}`);
+                this.$router.push({
+                    name: "Admin.System.Edit",
+                    params: {
+                        id
+                    }
+                });
             });
         },
         handleEditSystem() {

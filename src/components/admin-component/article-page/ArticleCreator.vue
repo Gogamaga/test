@@ -1,47 +1,28 @@
 <template>
-  <div className="container-fluid">
-      <Button :label="'назад до списку'" @handleClick="backToList" />
-      <div class="row">
-        <div class="col-lg-5 col-md-5">
-            <Input :label="'Назва'" 
-                    :labelId="'name'" 
-                    :name="'name'" 
-                    :value="article.name"
-                    @handleInput="handleInput"        
-            />
-            <text-area :label="'Текст статті'" 
-                        :labelId="'discription'" 
-                        :name="'discription'" 
-                        :value="article.discription" 
-                        :rows="7"
-                        @handleInput="handleInput" 
-            />
-            <v-select :options="mountains" v-model="selected" />
-            <Button v-if="isEdit" :label="'редагувати'" @handleClick="editArticle" />
-            <Button v-else :label="'зберегти'" @handleClick="saveArticle" />
-        </div>
-        <div class="col-lg-7 col-md-7">
-            <div class='row' v-for="photo in article.fotos" :key="photo.id">
-                <div class="col-lg-10 col-md-10">
-                    <InputWithDropDown @handleInput="handleInputPhotos(photo.id, $event)"
-                                        @handleDelete="handleDeletePhoto(photo.id)" 
-                                       :name="'src'"
-                                       :value='photo.src' 
-                    />
-                    <Input :placeholder="'опис фото'" 
-                            :value="photo.caption"
-                            :name="'caption'"
-                            @handleInput="handleInputPhotos(photo.id, $event)" 
-                    />
-                </div>
-                <div class="col-lg-2 col-md-2 align-items-center" :style="'display:flex'">
-                    <img v-if="photo.src" :src="photo.src" alt="..." class="img-thumbnail">
-                </div>
+    <div className="container-fluid">
+        <Button :label="'назад до списку'" @handleClick="backToList" />
+        <div class="row">
+            <div class="col-lg-5 col-md-5">
+                <Input :label="'Назва'" :labelId="'name'" :name="'name'" :value="article.name" @handleInput="handleInput" />
+                <text-area :label="'Текст статті'" :labelId="'discription'" :name="'discription'" :value="article.discription" :rows="7" @handleInput="handleInput" />
+                <v-select :options="mountains" v-model="selected" />
+                <Button v-if="isEdit" :label="'редагувати'" @handleClick="editArticle" />
+                <Button v-else :label="'зберегти'" @handleClick="saveArticle" />
             </div>
-            <Button :label="'додати'" @handleClick="addPhoto" />
+            <div class="col-lg-7 col-md-7">
+                <div class='row' v-for="photo in article.fotos" :key="photo.id">
+                    <div class="col-lg-10 col-md-10">
+                        <InputWithDropDown @handleInput="handleInputPhotos(photo.id, $event)" @handleDelete="handleDeletePhoto(photo.id)" :name="'src'" :value='photo.src' />
+                        <Input :placeholder="'опис фото'" :value="photo.caption" :name="'caption'" @handleInput="handleInputPhotos(photo.id, $event)" />
+                    </div>
+                    <div class="col-lg-2 col-md-2 align-items-center" :style="'display:flex'">
+                        <img v-if="photo.src" :src="photo.src" alt="..." class="img-thumbnail">
+                    </div>
+                </div>
+                <Button :label="'додати'" @handleClick="addPhoto" />
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -94,7 +75,9 @@ export default {
             EDIT_ARTICLE
         ]),
         backToList() {
-            this.$router.push("/admin/dashboard/articles");
+            this.$router.push({
+                name: "Admin.Articles.List"
+            });
         },
         handleInput(e) {
             const name = e.target.name;
@@ -135,7 +118,12 @@ export default {
                 }
             }
             this.SAVE_ARTICLE(this.article).then(id => {
-                this.$router.push(`/admin/dashboard/articles/edit/${id}`);
+                this.$router.push({
+                    name: "Admin.Articles.Edit",
+                    params: {
+                        id
+                    }
+                });
             });
         },
         editArticle() {

@@ -10,6 +10,7 @@ export default {
     {
       path: "",
       component: VideoList,
+      name: "Admin.Video.List",
       meta: {
         title: "Player"
       }
@@ -17,6 +18,7 @@ export default {
     {
       path: "setting",
       component: VideoPlayerSetting,
+      name: "Admin.Video.Setting",
       meta: {
         title: "Player"
       }

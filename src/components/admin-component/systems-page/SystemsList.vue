@@ -1,15 +1,19 @@
 <template>
-  <div>
+    <div>
         <Button :label="'додати'" @handleClick="this.handleAddSystem" />
         <!-- <h3 v-if="request" >Loadind...</h3> -->
-        <Table  >
+        <Table>
             <Thead slot="thead" :fields="['Назва','Дата створення','','']" />
             <Tbody slot="tbody">
-                <tr v-for="system in systems" :key="system._id" >
+                <tr v-for="system in systems" :key="system._id">
                     <td>{{system.name}}</td>
                     <td>{{system.create| parseTime }}</td>
-                    <td><Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editSystem(system._id)"/></td>
-                    <td><Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteSystem(system._id)" /></td>
+                    <td>
+                        <Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editSystem(system._id)" />
+                    </td>
+                    <td>
+                        <Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteSystem(system._id)" />
+                    </td>
                 </tr>
             </Tbody>
         </Table>
@@ -39,10 +43,17 @@ export default {
     },
     methods: {
         handleAddSystem() {
-            this.$router.push("/admin/dashboard/systems/new");
+            this.$router.push({
+                name: "Admin.System.New"
+            });
         },
         editSystem(id) {
-            this.$router.push(`/admin/dashboard/systems/edit/${id}`);
+            this.$router.push({
+                name: "Admin.System.Edit",
+                params: {
+                    id
+                }
+            });
         },
         deleteSystem(id) {
             this[DELETE_SYSTEM](id);

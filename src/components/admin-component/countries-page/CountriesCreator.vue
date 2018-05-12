@@ -47,7 +47,12 @@ export default {
             }
             this.isValid = true;
             this.$store.dispatch(SAVE_COUNTRY, this.country).then(id => {
-                this.$router.push(`/admin/dashboard/countries/edit/${id}`);
+                this.$router.push({
+                    name: "Admin.Countries.Edit",
+                    params: {
+                        id
+                    }
+                });
             });
         },
         handleEditCountry() {

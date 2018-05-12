@@ -47,7 +47,9 @@ export default {
             } else {
                 this.$route.meta.islogin = false;
             }
-            this.$router.push("/admin/dashboard/articles");
+            this.$router.push({
+                name: '"Admin.Articles.List"'
+            });
         }
     }
 };

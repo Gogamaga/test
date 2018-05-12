@@ -4,13 +4,17 @@
         <Table>
             <Thead slot="thead" :fields="['Назва', 'Гора','Перегляди','Дата створення','','']" />
             <Tbody slot="tbody">
-                <tr v-for="article in articles" :key="article._id" >
+                <tr v-for="article in articles" :key="article._id">
                     <td>{{article.name}}</td>
                     <td>{{article.mountain.name}}</td>
                     <td>{{article.views}}</td>
                     <td>{{article.create|parseTime }}</td>
-                    <td><Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editArticle(article._id)"/></td>
-                    <td><Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteArticle(article._id)" /></td>
+                    <td>
+                        <Button :label="'редагувати'" :btnStyle="'success'" @handleClick="editArticle(article._id)" />
+                    </td>
+                    <td>
+                        <Button :label="'видалити'" :btnStyle="'danger'" @handleClick="deleteArticle(article._id)" />
+                    </td>
                 </tr>
             </Tbody>
         </Table>
@@ -46,13 +50,20 @@ export default {
     methods: {
         ...mapActions([GET_ALL_ARTICLES_FOR_ADMIN, DELETE_ONE_ARTICLE]),
         editArticle(id) {
-            this.$router.push(`/admin/dashboard/articles/edit/${id}`);
+            this.$router.push({
+                name: "Admin.Articles.Edit",
+                params: {
+                    id
+                }
+            });
         },
         deleteArticle(id) {
             this.DELETE_ONE_ARTICLE(id);
         },
         handleAddNewArticle() {
-            this.$router.push("/admin/dashboard/articles/new");
+            this.$router.push({
+                name: "Admin.Articles.New"
+            });
         }
     },
     filters: {
