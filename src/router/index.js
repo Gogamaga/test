@@ -2,12 +2,14 @@ import Vue from "vue";
 import Router from "vue-router";
 
 import admin from "@/router/admin/";
+import articlesPage from "@/router/ui/articles-page";
 
 import IndexPage from "@/components/index-page/IndexPage.vue";
 import Article from "@/components/article-page/Article.vue";
 import PhotosPage from "@/components/photos-page/PhotosPage.vue";
 import UserWrap from "@/components/UserWrap";
-import WrapArticlesPage from "@/components/articles-page/WrapArticlesPage.vue";
+
+import MapWraper from "@/components/map-page/MapWraper";
 
 Vue.use(Router);
 
@@ -20,19 +22,24 @@ export default new Router({
       children: [
         {
           path: "/",
-          component: IndexPage
+          component: IndexPage,
+          name: "UI.Index"
         },
         {
           path: "/article/:id",
-          component: Article
+          component: Article,
+          name: "UI.Article"
         },
         {
           path: "/photos",
-          component: PhotosPage
+          component: PhotosPage,
+          name: "UI.Photos"
         },
+        articlesPage,
         {
-          path: "/articles",
-          component: WrapArticlesPage
+          path: "/map",
+          component: MapWraper,
+          name: "UI.Map"
         }
       ]
     },

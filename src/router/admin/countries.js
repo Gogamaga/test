@@ -25,7 +25,7 @@ export default {
     {
       path: "edit/:id",
       component: CountriesCreator,
-      name: "Admin.Countries.Creator",
+      name: "Admin.Countries.Edit",
       meta: {
         title: "Країни"
       }

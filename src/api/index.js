@@ -15,11 +15,20 @@ export const articles = {
   getSimilarArticle(name) {
     return axios.get(`/ui/articles/articlebymontainname/${name}`);
   },
-  getAllArticlesByMountainsName(name) {
-    return axios.get(`/ui/articles/articlebymontainname/${name}`);
+  getAllArticlesByMountainsName({ mountain, from, limit }) {
+    const pagination = { from, limit };
+    return axios.post(`/ui/articles/article-by-montain-name/?mountain=${mountain}`, pagination);
   },
-  searchArticleByDiscription(text) {
-    return axios.get(`/ui/articles/article-by-discription/search/?search=${text}`);
+  searchArticleByDiscription({ search, from, limit }) {
+    const pagination = { from, limit };
+    return axios.post(`/ui/articles/article-by-discription/search/?search=${search}`, pagination);
+  },
+  getArticlesCount() {
+    return axios.get(`/ui/articles/count`);
+  },
+  getArticlesLimit({ from, limit }) {
+    const pagination = { from, limit };
+    return axios.post(`/ui/articles/get-limit`, pagination);
   }
 };
 
@@ -41,5 +50,8 @@ export const photos = {
 export const mountains = {
   getAllMountainsName() {
     return axios.get(`/ui/mountains/mountains-name`);
+  },
+  getAllMountains() {
+    return axios.get(`/ui/mountains`);
   }
 };

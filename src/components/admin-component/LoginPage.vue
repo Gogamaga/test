@@ -48,7 +48,7 @@ export default {
                 this.$route.meta.islogin = false;
             }
             this.$router.push({
-                name: '"Admin.Articles.List"'
+                name: "Admin.Articles.List"
             });
         }
     }

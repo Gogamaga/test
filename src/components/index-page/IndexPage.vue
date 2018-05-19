@@ -1,4 +1,4 @@
-<template>  
+<template>
     <div class="index-page">
         <most-popular/>
         <newest/>
@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { setTitle } from "@/utils";
 import MostPopular from "./MostPopular";
 import Newest from "./newest/Newest";
 export default {
@@ -13,6 +14,9 @@ export default {
     components: {
         MostPopular,
         Newest
+    },
+    created() {
+        setTitle("Головна");
     },
     data() {
         return {};

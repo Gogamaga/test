@@ -1,14 +1,14 @@
 <template>
-  <nav class="header-navigator" :class="{small : headerTransition}">
-      <div class="header-navigator__logo">
-                    <a href="">G</a>
+    <nav class="header-navigator" :class="{small : headerTransition}">
+        <div class="header-navigator__logo">
+            <a href="">G</a>
         </div>
         <ul class="header-navigator__nav-list">
-            <NavigatorLink @test="test" :activeLink='activeLink' :textInner='"Головна"' :to="'/'" />
-            <NavigatorLink @test="test" :activeLink='activeLink' :textInner='"Статті"' :to="'/articles'"/>
-            <NavigatorLink @test="test" :activeLink='activeLink' :textInner='"thirth"' :to="'/s'"/>
-            <NavigatorLink @test="test" :activeLink='activeLink' :textInner='"Фото"' :to="'/photos'"/>
-            <NavigatorLink @test="test" :activeLink='activeLink' :textInner='"fifth"' :to="'/a'"/>
+            <NavigatorLink @test="test" :active-link='activeLink' :textInner='"Головна"' :to="{name:'UI.Index'}" :root-path="'index'" />
+            <NavigatorLink @test="test" :active-link='activeLink' :textInner='"Статті"' :to="{name:'UI.Articles-Page',params:{page:'1'}}" :root-path="'articles'" />
+            <NavigatorLink @test="test" :active-link='activeLink' :textInner='"thirth"' :to="{}" :root-path="'thirth'" />
+            <NavigatorLink @test="test" :active-link='activeLink' :textInner='"Фото"' :to="{name:'UI.Photos'}" :root-path="'photos'" />
+            <NavigatorLink @test="test" :active-link='activeLink' :textInner='"Карта"' :to="{name:'UI.Map'}" :root-path="'map'" />
         </ul>
     </nav>
 </template>

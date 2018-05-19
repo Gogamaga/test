@@ -1,24 +1,13 @@
 <template>
-  <div class="item-page__google-maps">
-    <div class="item-page__google-maps__mount">
-        <GmapMap
-  :center="markers[0].position"
-  :zoom="10"
-  map-type-id="terrain"
-  style="width: 100%; height: 500px"
->
-  <GmapMarker
-    :key="index"
-    v-for="(m, index) in markers"
-    :position="m.position"
-    :clickable="true"
-    :draggable="true"
-    @click="center=m.position"
-    :title="'LKJKOOK'"
-  />
-</GmapMap>
+    <div class="item-page__google-maps">
+        <div class="item-page__google-maps__mount">
+            <GmapMap :center="markers[0].position" :zoom="10" map-type-id="terrain" style="width: 100%; height: 500px">
+                <GmapMarker :key="index" v-for="(m, index) in markers" :position="m.position" :clickable="true" :draggable="true" @click="center=m.position" :title="'LKJKOOK'">
+
+                </GmapMarker>
+            </GmapMap>
+        </div>
     </div>
- </div>
 </template>
 
 <script>

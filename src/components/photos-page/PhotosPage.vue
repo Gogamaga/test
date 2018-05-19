@@ -42,7 +42,10 @@ export default {
 .photo-page_mountain-list {
     width: 25%;
 }
-
+.mountains-list .mountains-list__item {
+    text-transform: capitalize;
+    
+}
 .mountains-list .mountains-list__item__active {
     border-right: 2px solid #0099cc;
     transition: text-alight 0.2s ease-out;

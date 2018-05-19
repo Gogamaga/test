@@ -64,7 +64,6 @@ export const countries = {
   },
   getCountriesForPage({ from, limit }) {
     const pagination = { from, limit };
-    console.log(pagination);
     return axios.post(`/countries/countries-for-page`, pagination);
   }
 };

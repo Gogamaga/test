@@ -1,24 +1,32 @@
 <template>
-  <div class="photo-page_mountain-list photo-page_mountain-list__search">
-    <div class="clearfix">
-         <ul class="mountains-list">
-            <li class="mountains-list__item" 
-            v-for="name in mountainsName" 
-            :key="name._id" 
-            :class="{'mountains-list__item__active': query === name.name}" >
-            
-                <router-link  
-                exact-active-class="is-active" 
-                :to="`/articles?mountain=${name.name}`" >
-                {{name.name}}</router-link >
-            </li>
-            <li class="mountains-list__item" :class="{'mountains-list__item__active': !query}" >
-                <router-link  exact-active-class="is-active" :to="`/articles`" >Всі</router-link >
-            </li>
-        </ul>
+    <div class="photo-page_mountain-list photo-page_mountain-list__search">
+        <div class="clearfix">
+            <ul class="mountains-list">
+                <li class="mountains-list__item" v-for="name in mountainsName" :key="name._id" :class="{'mountains-list__item__active': query === name.name}">
 
+                    <router-link exact-active-class="is-active" :to="{
+                    name:'UI.Articles-Page',
+                    params:{
+                        page:1
+                    },
+                    query:{
+                        mountain:name.name
+                    }
+                }">
+                        {{name.name}}</router-link>
+                </li>
+                <li class="mountains-list__item" :class="{'mountains-list__item__active': !query}">
+                    <router-link exact-active-class="is-active" :to="{
+                    name:'UI.Articles-Page',
+                    params:{
+                        page:1
+                    }
+                }">Всі</router-link>
+                </li>
+            </ul>
+
+        </div>
     </div>
-  </div>
 </template>
 
 <script>

@@ -1,21 +1,23 @@
 <template>
-<ul class="search-container__list list-articles">
-  <li class="list-articles__item" v-for="article in articles" :key="article._id" >
-    <router-link :to="`/article/${article._id}`" >
-        <div class="list-articles__text">{{article.discription | shortDiscription}}</div>
-         <div class="list-articles__date">{{article.create | parseTime}}</div>
-    </router-link>
-  </li>
-  <li v-if="articles.length === 0" class="articles-no-found">
-      <p>Немає результатів пошуку</p>
-  </li>
-</ul>
+    <ul class="search-container__list list-articles">
+        <li class="list-articles__item" v-for="article in articles" :key="article._id">
+            <router-link :to="`/article/${article._id}`">
+                <div class="list-articles__text">{{article.discription | shortDiscription}}</div>
+                <div class="list-articles__date">{{article.create | parseTime}}</div>
+            </router-link>
+        </li>
+        <li v-if="articles.length === 0" class="articles-no-found">
+            <p>Немає результатів пошуку</p>
+        </li>
+    </ul>
 </template>
 
 <script>
 import { parseTimeStamp } from "@/utils";
+
 export default {
     name: "ArticleContainer",
+
     props: {
         articles: {
             type: Array,

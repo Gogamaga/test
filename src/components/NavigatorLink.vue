@@ -1,6 +1,6 @@
 <template>
     <li>
-        <router-link :to="to" class="header-navigator__nav-list-link" @click.stop="$emit('test',textInner)" v-bind:class="{'header-navigator__nav-list-link_active': activeLink===textInner}" >{{textInner}}</router-link>
+        <router-link :to="to" class="header-navigator__nav-list-link" @click.stop="$emit('test',textInner)" v-bind:class="{'header-navigator__nav-list-link_active': isActive}" >{{textInner}}</router-link>
     </li>
 </template>
 
@@ -8,9 +8,28 @@
 <script>
 export default {
     name: "NavigatorLink",
-    props: ["textInner", "activeLink", "to"],
-    data() {
-        return {};
+    props: {
+        to:{
+            type:Object,
+            default(){
+                return {}
+            }
+        },
+        textInner:{
+            type:String,
+            default:''
+        },
+        rootPath:{
+            type:String,
+            default:''
+        }
+    },
+    
+    computed: {
+        isActive() {
+            const to = new RegExp(this.rootPath);
+            return to.test(this.$route.path);
+        }
     }
 };
 </script>
